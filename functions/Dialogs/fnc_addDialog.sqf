@@ -7,8 +7,9 @@
  * 1: _text <STRING> Text to display.
  * 2: _nameOverride <STRING> Custom name to display instead of the unit's name.
  * 3: _customImage <STRING> Path or identifier of the custom image.
- * 4: _unitCustomColor <STRING> Custom color for the unit name.
- * 5: _textCustomColor <STRING> Custom color for the text.
+ * 4: _duration <SCALAR> Duration in seconds before the dialog auto-closes (0 for no auto-close).
+ * 5: _unitCustomColor <STRING> Custom color for the unit name.
+ * 6: _textCustomColor <STRING> Custom color for the text.
  *
  * Return value:
  * None
