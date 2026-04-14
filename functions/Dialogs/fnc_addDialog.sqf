@@ -27,10 +27,13 @@ params [
 	["_customImage", "", [""]],                       // Custom image (default: empty)
 	["_unitCustomColor", "", [""]],                   // Unit color (default: empty)
 	["_textCustomColor", "", [""]]                    // Text color (default: empty)
+	["_duration", 0, [0]]                             // Auto-close duration in seconds (default: 0 = no auto-close)
 ];
 
+private _layer = ["RscTalkBoxLayer"] call BIS_fnc_rscLayer;
+
 // Create the RscTalkBox dialog
-cutRsc ["RscTalkBox", "PLAIN", -1, true, true];
+_layer cutRsc ["RscTalkBox", "PLAIN", -1, true, true];
 
 // Get the dialog from the UI namespace
 private _display = uiNamespace getVariable ["RscTalkBox", displayNull];
@@ -75,3 +78,10 @@ if(_unitCustomColor == "")then{
 _textControl ctrlSetStructuredText parseText format ["<t font='PuristaSemiBold'><t color='%1'>%2</t></t> : <t font='PuristaMedium'><t color='%3'>%4</t></t>", _unitCustomColor, _unitName, _textCustomColor, _text];
 // Display custom image
 _imageControl ctrlSetText _customImage;
+
+if (_duration > 0) then {
+	_duration spawn {
+		sleep _this;
+		_layer cutRsc ["Default", "PLAIN", -1, true, true];
+	};
+};

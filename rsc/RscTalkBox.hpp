@@ -1,4 +1,11 @@
 class RscTitles{
+	class Default{
+		idd = -1;
+		fadein = 0.5;
+		fadeout = 0.5;
+		duration = 0;
+	};
+
 	class RscTalkBox
 	{
 		idd = -1;
