@@ -1,2 +1,22 @@
 # A3-TalkBox
-A series of scripts capable of creating a Text Box to display AI Voicelines. It also add function to both play the pre recored voice line and also play a series of animations
+A series of scripts capable of creating a Text Box to display AI Voicelines. 
+It also add functions to both play a pre recored voice line and also enables you to play multiple animation one after the other.
+
+## Features
+
+- Display AI voicelines in text boxes.
+- Play pre-recorded voice files.
+- Trigger synchronized animations.
+
+## Requirements
+
+- None
+
+## License
+
+No licences.
+Do whatever you want with it.
+
+## Contributing
+
+Contributions are welcome. Please submit pull requests or issues.
