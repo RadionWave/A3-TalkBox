@@ -1,5 +1,5 @@
 /*
- * Authors: Archer
+ * Authors: RadionWave
  * Description: Plays a sound for a unit, either in 3D space or as UI sound.
  *
  * Arguments:

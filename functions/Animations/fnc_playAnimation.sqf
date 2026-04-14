@@ -1,5 +1,5 @@
 /*
- * Authors: Archer
+ * Authors: RadionWave
  * Function that plays a list of animations on a unit sequentially. The total duration of all animations is returned.
  *
  * Arguments:

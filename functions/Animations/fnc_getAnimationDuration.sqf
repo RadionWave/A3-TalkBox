@@ -1,5 +1,5 @@
 /*
- * Authors: Archer
+ * Authors: RadionWave
  * Description: Returns the animation duration of a current animation unit.
  *
  * Arguments:
