@@ -19,7 +19,17 @@ params [
 	["_animationList", [], [[]]]
 ];
 
-if (isNull _unit) exitWith {0}; // If the unit is null, exit the function and return 0
+if (isNull _unit) exitWith {
+	diag_log "playAnimation: No unit passed to function";
+};
+
+if (!(alive _unit)) exitWith {
+	diag_log "playAnimation: Cannot play animation from a dead unit";
+};
+
+if (lifeState _unit == "INCAPACITATED") exitWith {
+	diag_log "playAnimation: Cannot play animation from an incapacitated unit";
+};
 
 _unit disableAI "ANIM"; // Disable the unit's AI to allow animations to play without interruption
 private _totalDuration = 0; // Initialize total duration variable
@@ -34,10 +44,10 @@ private _totalDuration = 0; // Initialize total duration variable
 	private _currentIndex = _forEachIndex; // Get the index of the current animation in the list
 	private _animationDuration = [_currentAnimation] call AR_fnc_getAnimationDuration;
 	
-	if(_currentIndex == 0) then { // Check if it's the first animation in the list
-		_unit switchMove [_currentAnimation]; // Use switchMove for the first animation to ensure it starts immediately
+	if(_currentIndex == 0) then {
+		_unit switchMove [_currentAnimation];
 	}else{
-		_unit playMove _currentAnimation; // Use playMove for subsequent animations to allow them to queue up after the first one
+		_unit playMove _currentAnimation;
 	};
 
 }forEach _animationList;
