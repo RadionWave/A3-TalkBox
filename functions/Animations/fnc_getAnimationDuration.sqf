@@ -27,7 +27,7 @@ _moves = gettext (configfile >> "cfgvehicles" >> typeof _animationDummy >> "move
 _cfgAnim = configfile >> _moves >> "States" >> _animation; // Access the animation state configuration
 
 _speed = getnumber (_cfgAnim >> "speed"); // Read the animation speed from config
-_duration = if (_speed != 0) then { abs (1 / _speed) } else { 0 }; // Calculate the duration in seconds, 0 if speed is zero
+_duration = if (_speed > 0 ) then { abs (1 / _speed) } else { 0 }; // Calculate the duration in seconds, 0 if speed is zero or negative
 deleteVehicle _animationDummy; // Delete the dummy soldier
 
 _duration; // Return the calculated duration
