@@ -12,7 +12,7 @@
  * Example:
  * [_unit,_animationList] call AR_fnc_playAnimation
  *
- * Public: No
+ * Public: Yes
  */
 params [
 	["_unit", objNull, [objNull]],

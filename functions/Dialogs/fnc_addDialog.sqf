@@ -1,56 +1,77 @@
-// Déclare les paramètres de la fonction avec leurs valeurs par défaut
+/*
+ * Author: RadionWave
+ * Description: Adds a dialog entry to the RscTalkBox dialog.
+ *
+ * Arguments:
+ * 0: _unit <OBJECT> Source unit of the dialog.
+ * 1: _text <STRING> Text to display.
+ * 2: _nameOverride <STRING> Custom name to display instead of the unit's name.
+ * 3: _customImage <STRING> Path or identifier of the custom image.
+ * 4: _unitCustomColor <STRING> Custom color for the unit name.
+ * 5: _textCustomColor <STRING> Custom color for the text.
+ *
+ * Return value:
+ * None
+ *
+ * Example:
+ * [_unit, "Good evening", "Chief", getMissionPath "Chief_HeadShot.jpg"] call fnc_addDialog;
+ *
+ * Public: Yes
+ */
+
+// Declare function parameters with their default values
 params [
-	["_unit", objNull, [objNull]],                    // Unité (par défaut: objNull)
-	["_text", "", [""]],                              // Texte du dialogue (par défaut: vide)
-	["_nameOverride", "", [""]],                      // Nom personnalisé (par défaut: vide)
-	["_customImage", "", [""]],                       // Image personnalisée (par défaut: vide)
-	["_unitCustomColor", "", [""]],                   // Couleur de l'unité (par défaut: vide)
-	["_textCustomColor", "", [""]]                    // Couleur du texte (par défaut: vide)
+	["_unit", objNull, [objNull]],                    // Unit (default: objNull)
+	["_text", "", [""]],                              // Dialog text (default: empty)
+	["_nameOverride", "", [""]],                      // Custom name (default: empty)
+	["_customImage", "", [""]],                       // Custom image (default: empty)
+	["_unitCustomColor", "", [""]],                   // Unit color (default: empty)
+	["_textCustomColor", "", [""]]                    // Text color (default: empty)
 ];
 
-// Crée la boîte de dialogue RscTalkBox
+// Create the RscTalkBox dialog
 cutRsc ["RscTalkBox", "PLAIN", -1, true, true];
 
-// Récupère la boîte de dialogue depuis l'espace UI
+// Get the dialog from the UI namespace
 private _display = uiNamespace getVariable ["RscTalkBox", displayNull];
-// Récupère le contrôle image (ID: 6000)
+// Get the image control (ID: 6000)
 private _displayControl = _display displayCtrl 6000;
 
-// Vérifie si la boîte de dialogue existe
+// Check if the dialog exists
 if(isNull _display)exitWith {
 	diag_log "addDialog: No display found in uiNamespace";
 };
 
-// Vérifie si une unité est fournie
+// Check if a unit is provided
 if(isNull _unit)exitWith {
 	diag_log "addDialog: No unit passed to function";
 };
 
-// Récupère les contrôles image et texte
+// Get image and text controls
 private _imageControl = _display displayCtrl 6000;
 private _textControl = _display displayCtrl 6001;
 
-// Récupère le nom de l'unité
+// Get the unit name
 private _unitName = name _unit;
 
-// Utilise le nom personnalisé s'il est fourni
+// Use custom name if provided
 if(_nameOverride != "")then{
 	_unitName = _nameOverride;
 };
 
-// Définit la couleur de l'unité selon son side si non spécifiée
+// Set unit color based on side if not specified
 if(_unitCustomColor == "")then{
 	private _unitSide = side _unit;
 	switch (_unitSide) do {
-		case west: {_unitCustomColor = "#004C99";};        // Bleu (OTAN)
-		case east: {_unitCustomColor = "#800000";};        // Rouge foncé (CSAT)
-		case independent: {_unitCustomColor = "#008000";}; // Vert (AAF)
-		case civilian: {_unitCustomColor = "#660080";};    // Violet (Civil)
-		default {_unitCustomColor = "#B29900";};           // Doré (Défaut)
+		case west: {_unitCustomColor = "#004C99";};        // Blue (NATO)
+		case east: {_unitCustomColor = "#800000";};        // Dark red (CSAT)
+		case independent: {_unitCustomColor = "#008000";}; // Green (AAF)
+		case civilian: {_unitCustomColor = "#660080";};    // Purple (Civilian)
+		default {_unitCustomColor = "#B29900";};           // Gold (Default)
 	};
 };
 
-// Affiche le texte formaté avec couleurs et polices
+// Display formatted text with colors and fonts
 _textControl ctrlSetStructuredText parseText format ["<t font='PuristaSemiBold'><t color='%1'>%2</t></t> : <t font='PuristaMedium'><t color='%3'>%4</t></t>", _unitCustomColor, _unitName, _textCustomColor, _text];
-// Affiche l'image personnalisée
+// Display custom image
 _imageControl ctrlSetText _customImage;

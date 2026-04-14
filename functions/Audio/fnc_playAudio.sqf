@@ -13,9 +13,9 @@
  * _soundDuration <SCALAR> Duration of the sound in seconds
  *
  * Example:
- * [player, "A3_sounds_f_props_metal_structures_glass_01_01", true, 1, 100] call fnc_playAudio
+ * [_unit, getMissionPath "sounds\voiceline_1.ogg", true, 1, 100] call ar_fnc_playAudio;
  *
- * Public: No
+ * Public: Yes
  */
 
 
