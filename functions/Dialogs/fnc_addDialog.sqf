@@ -33,6 +33,21 @@ params [
 
 private _layer = ["RscTalkBoxLayer"] call BIS_fnc_rscLayer;
 
+// Check if a unit is provided
+if (isNull _unit ) exitWith {
+	diag_log "addDialog: No unit passed to function";
+}; // If the unit is null, exit the function and return 0
+
+if (!(alive _unit)) exitWith {
+	diag_log "addDialog: Cannot show dialog from a dead unit";
+	_layer cutFadeOut 0.5; 
+};
+
+if (lifeState _unit == "INCAPACITATED") exitWith {
+	diag_log "addDialog: Cannot show dialog from an incapacitated unit";
+	_layer cutFadeOut 0.5; 
+};
+
 // Create the RscTalkBox dialog
 _layer cutRsc ["RscTalkBox", "PLAIN", -1, true, true];
 
@@ -44,11 +59,6 @@ private _displayControl = _display displayCtrl 6000;
 // Check if the dialog exists
 if(isNull _display)exitWith {
 	diag_log "addDialog: No display found in uiNamespace";
-};
-
-// Check if a unit is provided
-if(isNull _unit)exitWith {
-	diag_log "addDialog: No unit passed to function";
 };
 
 // Get image and text controls
