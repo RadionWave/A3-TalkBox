@@ -25,9 +25,9 @@ params [
 	["_text", "", [""]],                              // Dialog text (default: empty)
 	["_nameOverride", "", [""]],                      // Custom name (default: empty)
 	["_customImage", "", [""]],                       // Custom image (default: empty)
+	["_duration", 0, [0]],                             // Auto-close duration in seconds (default: 0 = no auto-close)
 	["_unitCustomColor", "", [""]],                   // Unit color (default: empty)
 	["_textCustomColor", "", [""]]                    // Text color (default: empty)
-	["_duration", 0, [0]]                             // Auto-close duration in seconds (default: 0 = no auto-close)
 ];
 
 private _layer = ["RscTalkBoxLayer"] call BIS_fnc_rscLayer;
@@ -80,8 +80,8 @@ _textControl ctrlSetStructuredText parseText format ["<t font='PuristaSemiBold'>
 _imageControl ctrlSetText _customImage;
 
 if (_duration > 0) then {
-	_duration spawn {
-		sleep _this;
-		_layer cutRsc ["Default", "PLAIN", -1, true, true];
-	};
+		[{
+		params["_layer"];
+		_layer cutFadeOut 0.5; 
+		},[_layer],_duration]call CBA_fnc_waitAndExecute;
 };
