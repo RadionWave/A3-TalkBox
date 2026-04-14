@@ -1,0 +1,35 @@
+#include "rsc\BaseControls.hpp"
+#include "rsc\RscTalkBox.hpp"
+
+class CfgFunctions
+{
+	class AR
+	{
+		class Animations
+		{
+			class getAnimationDuration {
+                file = "functions\Animations\fnc_getAnimationDuration.sqf";
+            };
+            class playAnimation {
+                file = "functions\Animations\fnc_playAnimation.sqf";
+            };
+		};
+		class Dialogs
+		{
+			class onLoad {
+				file = "functions\Dialogs\fnc_onLoad.sqf";
+			};
+			class unload {
+				file = "functions\Dialogs\fnc_onUnload.sqf";
+			};
+			class addDialog {
+				file = "functions\Dialogs\fnc_addDialog.sqf";
+			};
+		};
+		class Audio{
+			class playAudio {
+				file = "functions\Audio\fnc_playAudio.sqf";
+			};
+		};
+	};
+};
