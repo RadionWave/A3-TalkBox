@@ -16,7 +16,3 @@ It also add functions to both play a pre recored voice line and also enables you
 
 No licences.
 Do whatever you want with it.
-
-## Contributing
-
-Contributions are welcome. Please submit pull requests or issues.
