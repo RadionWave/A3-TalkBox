@@ -79,9 +79,9 @@ _textControl ctrlSetStructuredText parseText format ["<t font='PuristaSemiBold'>
 // Display custom image
 _imageControl ctrlSetText _customImage;
 
-if (_duration > 0) then {
+if (_duration > 0) then { // If the duration is specified, and is greater than 0, close the dialog after the specified duration + 1
 		[{
 		params["_layer"];
 		_layer cutFadeOut 0.5; 
-		},[_layer],_duration]call CBA_fnc_waitAndExecute;
+		},[_layer],_duration + 1]call CBA_fnc_waitAndExecute;
 };
