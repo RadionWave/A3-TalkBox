@@ -1,6 +1,6 @@
 /*
  * Author: RadionWave
- * Description: Adds a dialog entry to the RscTalkBox dialog.
+ * Description: Draw the talkbox on the screen
  *
  * Arguments:
  * 0: _unit <OBJECT> Source unit of the dialog.
@@ -15,9 +15,9 @@
  * None
  *
  * Example:
- * [_unit, "Good evening", "Chief", getMissionPath "Chief_HeadShot.jpg"] call fnc_addDialog;
+ * [_unit, "Good evening", "Chief", getMissionPath "Chief_HeadShot.jpg"] call fnc_createTalkBox;
  *
- * Public: Yes
+ * Public: No
  */
 
 // Declare function parameters with their default values
@@ -30,6 +30,8 @@ params [
 	["_unitCustomColor", "", [""]],                   // Unit color (default: empty)
 	["_textCustomColor", "", [""]]                    // Text color (default: empty)
 ];
+// THIS LINE IS FOR DEBUGGING ONLY
+// diag_log format["[TalkBox]: AR_CreateTalkBox %1",[_unit,_text,_nameOverride,_customImage,_duration,_unitCustomColor,_textCustomColor]];
 
 private _layer = ["RscTalkBoxLayer"] call BIS_fnc_rscLayer;
 
