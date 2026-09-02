@@ -10,7 +10,7 @@ It also add functions to both play a pre recored voice line and also enables you
 
 ## Requirements
 
-- None
+- CBA_A3
 
 ## License
 
